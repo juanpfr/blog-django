@@ -7,4 +7,8 @@ class Versicles(models.Model):
     cap_number = models.IntegerField()
     ver_number = models.IntegerField()
     versicle = models.TextField()
+    teaching = models.TextField()
+
+    def __str__(self):
+        return self.book
 

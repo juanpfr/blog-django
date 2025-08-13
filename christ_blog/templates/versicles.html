@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Versículos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container py-4">
+        <!-- Cabeçalho da página -->
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold">Versículos e Ensinamentos</h1>
+            <p class="text-muted">
+                Bem-vindo à página inicial de versículos e seus ensinamentos. Aqui você encontrará
+                passagens bíblicas acompanhadas de reflexões para inspirar e transformar seu dia.
+            </p>
+        </div>
+
+        <!-- Lista de versículos -->
+        <div class="row">
+            {% for versicle in versicles %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ versicle.book }} {{ versicle.cap_number }}:{{ versicle.ver_number }}
+                            </h5>
+                            <p class="card-text"><strong>Versículo:</strong> {{ versicle.versicle }}</p>
+                            <p class="card-text"><strong>Ensinamento:</strong> {{ versicle.teaching }}</p>
+                            <a href="{% url 'versicle_teaching' versicle.pk %}" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-warning text-center">
+                        Nenhum versículo cadastrado.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
